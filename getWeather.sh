@@ -2,6 +2,7 @@
 
 #Declare the end user's name here!!!
 ENDUSER="user"
+ANNOUNCER="Tux"
 
 #Declare variables with paths to files...
 TXTWEATHER="/home/$ENDUSER/public_html/weather.txt"
@@ -17,9 +18,9 @@ WEATHERURL="http://forecast.weather.gov/MapClick.php?lat=42.66630&lon=-84.553667
 #echo $WEATHERURL > $TMPWEATHER
 
 #Fondle text into readable format...
-/bin/echo "Here's your forecast from the National Weather Service, compiled by Earl." > $TXTWEATHER
-#new weather has a header of 15 and tail of 20
-/usr/bin/head -n -18 $TMPWEATHER | /usr/bin/tail -n +5 >> $TXTWEATHER
+/bin/echo "Here's your forecast from the National Weather Service, compiled by $ANNOUNCER." > $TXTWEATHER
+#Trim away the last 24 lines | Trim away the first 5 lines >> append to $TXTWEATHER
+/usr/bin/head -n -24 $TMPWEATHER | /usr/bin/tail -n +5 >> $TXTWEATHER
 /bin/echo "For more information, visit weather dot gov slash G, R, R." >> $TXTWEATHER
 
 #Make slight text replacement for broadcastability...
